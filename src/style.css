@@ -10,8 +10,9 @@
     background-color: #f4f4f9;
     color: #333;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center; /* Center align items */
+    flex-direction: column; /* Change to column to stack header above app container */
     min-height: 100vh;
     padding-top: 20px;
   }
@@ -24,6 +25,7 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 20px;
+    padding-bottom: 10px;
     position: relative; /* Add this line */
   }
   
@@ -247,4 +249,83 @@
 
   .import-export-container a:hover {
     text-decoration: underline;
+  }
+
+  #header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure header takes full width */
+    max-width: 480px; /* Match the max-width of the app container */
+  }
+
+  #mascot {
+    height: 50px;
+    margin-right: auto;
+    margin-left: 20px;
+    filter: drop-shadow(0 6px 8px rgba(170, 0, 0, 0.7));
+  }
+
+  #settings-icon {
+    color: lightgray;
+    margin-left: auto;
+    margin-right: 20px;
+    padding-left: 26px;
+    cursor: pointer;
+  }
+
+  #header h1 {
+    margin: 0;
+    font-size: 42px;
+    font-family: "DynaPuff", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+
+  #settings-menu {
+    position: absolute;
+    top: 25px;
+    right: 45px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+
+  .menu-item {
+    color: #333;
+    font-size: 16px;
+    padding: 8px 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  #settings-menu.hidden {
+    display: none;
+  }
+
+  #menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  #menu-overlay.hidden {
+    display: none;
   }

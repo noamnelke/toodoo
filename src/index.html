@@ -22,11 +22,26 @@
   <meta name="twitter:description" content="TooDoo motivates your kids to complete their daily routines!">
   <meta name="twitter:image" content="https://toodoo.click/toodoo.png">
   <meta name="twitter:site" content="@noamnelke">
+
+  <!-- Embed Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Main container for the app -->
+  <div id="header">
+    <img src="toodoo-mascot.png" alt="TooDoo Mascot" id="mascot">
+    <h1>TooDoo</h1>
+    <i class="material-icons" id="settings-icon" onclick="toggleMenu()">settings</i>
+    <div id="settings-menu" class="hidden">
+      <div id="import-link" class="menu-item">Import</div>
+      <div id="export-link" class="menu-item">Export</div>
+    </div>
+  </div>
   <div id="app"></div>
+  <div id="menu-overlay" class="hidden" onclick="toggleMenu()"></div>
 
   <!-- Add to Home Screen Balloon -->
   <div id="add-to-home-screen">

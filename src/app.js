@@ -38,6 +38,9 @@ function renderMainScreen() {
   currentRoutineIndex = null;
   appContainer.innerHTML = '';
 
+  // Show header
+  document.getElementById('header').style.display = 'flex';
+
   // Create a card for each routine
   routines.forEach((routine, index) => {
     const routineCard = createCard(routine.name, () => renderRoutineScreen(index), 'routine-card');
@@ -48,17 +51,9 @@ function renderMainScreen() {
   const newRoutineCard = createCard('New Routine', createNewRoutine, 'routine-card', 'new-routine-card');
   appContainer.appendChild(newRoutineCard);
 
-  // Create Import/Export links
-  const importExportContainer = document.createElement('div');
-  importExportContainer.classList.add('import-export-container');
-
-  const importLink = createLink('Import', handleImport);
-  importExportContainer.appendChild(importLink);
-
-  const exportLink = createLink('Export', handleExport);
-  importExportContainer.appendChild(exportLink);
-
-  appContainer.appendChild(importExportContainer);
+  // Attach import/export handlers to the menu items
+  document.getElementById('import-link').addEventListener('click', handleImport);
+  document.getElementById('export-link').addEventListener('click', handleExport);
 }
 
 // Function to render a specific routine screen
@@ -66,6 +61,9 @@ function renderRoutineScreen(routineIndex) {
   currentRoutineIndex = routineIndex;
   const routine = routines[routineIndex];
   appContainer.innerHTML = '';
+
+  // Hide header
+  document.getElementById('header').style.display = 'none';
 
   const header = document.createElement('h1');
   header.contentEditable = true;
@@ -310,6 +308,14 @@ function isStandalone() {
 function showAddToHomeScreen() {
   const addToHomeScreen = document.getElementById('add-to-home-screen');
   addToHomeScreen.style.display = 'flex';
+}
+
+// Function to toggle the settings menu
+function toggleMenu() {
+  const menu = document.getElementById('settings-menu');
+  const overlay = document.getElementById('menu-overlay');
+  const isHidden = menu.classList.toggle('hidden');
+  overlay.classList.toggle('hidden', isHidden);
 }
 
 // Check if the app is running on mobile and not in standalone mode
