@@ -368,3 +368,65 @@
     width: 100%;
     transition: left 0.3s ease;
   }
+
+  .full-screen-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      30deg,
+      rgba(255, 138, 138, 0.8) 0px,
+      rgba(255, 191, 138, 0.8) 60px,
+      rgba(255, 255, 138, 0.8) 120px,
+      rgba(138, 255, 163, 0.8) 180px,
+      rgba(138, 198, 255, 0.8) 240px,
+      rgba(138, 255, 163, 0.8) 300px,
+      rgba(255, 255, 138, 0.8) 360px,
+      rgba(255, 191, 138, 0.8) 420px,
+      rgba(255, 138, 138, 0.8) 480px
+    );
+    background-size: 960px;
+    display: none;
+    flex-direction: column; /* Change to column to stack message and button */
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 1s ease-out, gradientAnimation 8s linear infinite;
+  }
+  
+  .full-screen-effect .message {
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    animation: zoomIn 0.5s ease-out;
+  }
+
+  .full-screen-effect button {
+    visibility: hidden; /* Ensure button takes up space but is not visible */
+    margin-top: 20px;
+  }
+
+  .full-screen-effect button.visible {
+    visibility: visible; /* Make button visible when needed */
+    animation: zoomIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.5);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

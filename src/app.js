@@ -206,6 +206,23 @@ function toggleTaskCompletion(taskCard) {
   updateProgressBar();
 }
 
+function showFullScreenEffect() {
+  const effectContainer = document.getElementById('full-screen-effect');
+  effectContainer.style.display = 'flex';
+  setTimeout(() => {
+    document.getElementById('reset-button').classList.add('visible');
+  }, 1000); // Show button after 1 second
+}
+
+function resetRoutine() {
+  const routine = routines[currentRoutineIndex];
+  routine.tasks.forEach(task => task.completed = false);
+  saveRoutines();
+  document.getElementById('full-screen-effect').style.display = 'none';
+  document.getElementById('reset-button').classList.remove('visible');
+  renderMainScreen();
+}
+
 // Function to create a new routine
 function createNewRoutine() {
   const routineName = prompt('Enter the name of the new routine:');
@@ -338,6 +355,10 @@ function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
   progressBar.style.left = progress + '%';
+
+  if (progress === 100) {
+    showFullScreenEffect();
+  }
 }
 
 // Check if the app is running on mobile and not in standalone mode
