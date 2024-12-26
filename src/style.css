@@ -329,3 +329,19 @@
   #menu-overlay.hidden {
     display: none;
   }
+
+  .progress-bar-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .progress-bar {
+    height: 20px;
+    background-color: #4CAF50;
+    width: 0; /* Initial width, can be updated dynamically */
+    transition: width 0.3s ease;
+  }

@@ -110,6 +110,20 @@ function renderRoutineScreen(routineIndex) {
   });
   appContainer.appendChild(editButton);
 
+  // Add progress bar container
+  const progressBarContainer = document.createElement('div');
+  progressBarContainer.classList.add('progress-bar-container');
+  const progressBar = document.createElement('div');
+  progressBar.classList.add('progress-bar');
+  progressBar.id = 'progress-bar';
+  progressBarContainer.appendChild(progressBar);
+  appContainer.appendChild(progressBarContainer);
+
+  // Update progress bar
+  const completedTasks = routine.tasks.filter(task => task.completed).length;
+  const totalTasks = routine.tasks.length;
+  updateProgressBar(completedTasks, totalTasks);
+
   // Render each task in the routine
   routine.tasks.forEach((task, taskIndex) => {
     const taskCardContainer = document.createElement('div');
@@ -316,6 +330,13 @@ function toggleMenu() {
   const overlay = document.getElementById('menu-overlay');
   const isHidden = menu.classList.toggle('hidden');
   overlay.classList.toggle('hidden', isHidden);
+}
+
+// Function to update the progress bar
+function updateProgressBar(completedTasks, totalTasks) {
+  const progressBar = document.getElementById('progress-bar');
+  const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+  progressBar.style.width = progress + '%';
 }
 
 // Check if the app is running on mobile and not in standalone mode
