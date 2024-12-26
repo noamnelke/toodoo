@@ -119,10 +119,7 @@ function renderRoutineScreen(routineIndex) {
   progressBarContainer.appendChild(progressBar);
   appContainer.appendChild(progressBarContainer);
 
-  // Update progress bar
-  const completedTasks = routine.tasks.filter(task => task.completed).length;
-  const totalTasks = routine.tasks.length;
-  updateProgressBar(completedTasks, totalTasks);
+  updateProgressBar();
 
   // Render each task in the routine
   routine.tasks.forEach((task, taskIndex) => {
@@ -160,7 +157,7 @@ function renderRoutineScreen(routineIndex) {
         }
       });
     } else {
-      taskCard.addEventListener('click', () => toggleTaskCompletion(routineIndex, taskIndex));
+      taskCard.addEventListener('click', (e) => toggleTaskCompletion(e.currentTarget));
     }
     taskCardContainer.appendChild(taskCard);
 
@@ -201,10 +198,12 @@ function renderRoutineScreen(routineIndex) {
 }
 
 // Function to toggle the completion of a task
-function toggleTaskCompletion(routineIndex, taskIndex) {
-  routines[routineIndex].tasks[taskIndex].completed = !routines[routineIndex].tasks[taskIndex].completed;
+function toggleTaskCompletion(taskCard) {
+  const task = routines[currentRoutineIndex].tasks[taskCard.dataset.taskIndex];
+  task.completed = taskCard.classList.toggle('completed');
   saveRoutines();
-  renderRoutineScreen(routineIndex);
+
+  updateProgressBar();
 }
 
 // Function to create a new routine
@@ -333,10 +332,12 @@ function toggleMenu() {
 }
 
 // Function to update the progress bar
-function updateProgressBar(completedTasks, totalTasks) {
+function updateProgressBar() {
+  const completedTasks = routines[currentRoutineIndex].tasks.filter(task => task.completed).length;
+  const totalTasks = routines[currentRoutineIndex].tasks.length;
   const progressBar = document.getElementById('progress-bar');
   const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
-  progressBar.style.width = progress + '%';
+  progressBar.style.left = progress + '%';
 }
 
 // Check if the app is running on mobile and not in standalone mode

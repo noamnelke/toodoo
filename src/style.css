@@ -333,15 +333,38 @@
   .progress-bar-container {
     width: 100%;
     max-width: 480px;
-    background-color: #e0e0e0;
+    background: repeating-linear-gradient(
+      30deg,
+      #FF8A8A 0px,
+      #FFBF8A 60px,
+      #FFFF8A 120px,
+      #8AFFA3 180px,
+      #8AC6FF 240px,
+      #8AFFA3 300px,
+      #FFFF8A 360px,
+      #FFBF8A 420px,
+      #FF8A8A 480px
+    );
+    background-size: 960px;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
+    animation: gradientAnimation 8s linear infinite;
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0;
+    }
+    100% {
+      background-position: 960px;
+    }
   }
 
   .progress-bar {
+    position: relative;
     height: 20px;
-    background-color: #4CAF50;
-    width: 0; /* Initial width, can be updated dynamically */
-    transition: width 0.3s ease;
+    background-color: #e0e0e0;
+    width: 100%;
+    transition: left 0.3s ease;
   }
