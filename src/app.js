@@ -206,9 +206,28 @@ function toggleTaskCompletion(taskCard) {
   updateProgressBar();
 }
 
+const gifList = [
+  { url: 'https://giphy.com/embed/13hxeOYjoTWtK8', width: 480, height: 480 },
+  { url: 'https://giphy.com/embed/DmzqK3goMu5v0W5SIg', width: 480, height: 269 },
+  { url: 'https://giphy.com/embed/6YHTDaYbWsV942MuPk', width: 480, height: 274 },
+  { url: 'https://giphy.com/embed/1PMVNNKVIL8Ig', width: 480, height: 360 },
+  { url: 'https://giphy.com/embed/7SfAXqgRgh0li', width: 480, height: 346 },
+  { url: 'https://giphy.com/embed/Xw6yFn7frR3Y4', width: 393, height: 480 },
+  { url: 'https://giphy.com/embed/l2GsSPkKjx6ZW', width: 358, height: 480 },
+  { url: 'https://giphy.com/embed/11StaZ9Lj74oCY', width: 480, height: 307 },
+  { url: 'https://giphy.com/embed/GFHJXPCoVQEec', width: 480, height: 360 },
+  { url: 'https://giphy.com/embed/rlkpAmX3gaLWE', width: 480, height: 360 }
+];
+
 function showFullScreenEffect() {
   const effectContainer = document.getElementById('full-screen-effect');
   effectContainer.style.display = 'flex';
+
+  // Pick a random GIF
+  const randomGif = gifList[Math.floor(Math.random() * gifList.length)];
+  const gifContainer = document.getElementById('gif-container');
+  gifContainer.innerHTML = `<iframe src="${randomGif.url}" width="${randomGif.width}" height="${randomGif.height}" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+
   setTimeout(() => {
     document.getElementById('reset-button').classList.add('visible');
   }, 1000); // Show button after 1 second
